@@ -1,0 +1,94 @@
+# Download Button Component
+
+An advanced download button component with comprehensive progress tracking, pause/resume functionality, and intelligent state management for file downloads.
+
+## Features
+
+- **Progress Tracking**: Real-time download progress with visual indicators
+- **Pause/Resume**: Ability to pause and resume downloads using HTTP range requests
+- **Cancel Support**: Cancel downloads at any time with proper cleanup
+- **State Management**: Complete download state tracking (idle, downloading, paused, cancelled, completed)
+- **Error Handling**: Robust error handling with user notifications
+- **File Size Display**: Shows downloaded/total bytes with formatted display
+- **Tooltip Information**: Dynamic tooltips showing current download status
+- **Resumable Downloads**: Uses HTTP range headers for resuming interrupted downloads
+- **Blob URL Support**: Handles both regular URLs and blob URLs
+- **TypeScript**: Fully typed with comprehensive interfaces
+
+## Usage
+
+```tsx
+import DownloadButton from '@/components/buttons/DownloadButton';
+
+function MyComponent() {
+  return (
+    <DownloadButton
+      url="https://example.com/file.pdf"
+      name="document.pdf"
+      tooltip="Download PDF document"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `url` | `string` | - | The URL of the file to download |
+| `name` | `string` | - | The filename to save the download as |
+| `tooltip` | `string` | `"Download"` | Tooltip text for the download button |
+
+## Download States
+
+The component manages the following download states:
+
+- **idle**: Ready to start download
+- **downloading**: Download in progress
+- **paused**: Download temporarily paused
+- **cancelled**: Download was cancelled
+- **completed**: Download finished successfully
+
+## Features in Detail
+
+### Progress Tracking
+- Visual progress indicator with percentage
+- Displays downloaded bytes vs total file size
+- Real-time updates during download
+
+### Pause/Resume Functionality
+- Uses HTTP Range headers for resumable downloads
+- Maintains download chunks for seamless resume
+- Proper state management for pause/resume cycle
+
+### Error Handling
+- Network error recovery
+- Abort signal handling
+- User-friendly error notifications
+
+### File Handling
+- Automatic filename sanitization
+- Support for blob URLs
+- Proper memory management and cleanup
+
+## API Requirements
+
+The component expects a download API endpoint at `/api/download` that supports:
+- Query parameters: `url` and `name`
+- HTTP Range headers for resumable downloads
+- Proper Content-Length and Content-Range headers
+
+## Styling
+
+The component uses Material-UI components and includes:
+- Hover effects and transitions
+- Progress indicators with animations
+- Responsive button groups
+- Consistent theming with Material-UI
+
+## Accessibility
+
+- Full keyboard navigation
+- Screen reader compatible tooltips
+- ARIA labels for progress indicators
+- Focus management during state changes

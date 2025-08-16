@@ -1,0 +1,19 @@
+{
+  "name": "Download Button",
+  "category": "buttons",
+  "description": "Advanced download button with progress tracking, pause/resume functionality, and state management for file downloads.",
+  "tags": [
+    "button",
+    "download",
+    "progress",
+    "file",
+    "upload",
+    "async",
+    "pause",
+    "resume"
+  ],
+  "files": [
+    "DownloadButton.tsx",
+    "demo.tsx"
+  ]
+}
