@@ -1,0 +1,144 @@
+# TimeHourInput Component
+
+A combined date and time input component that handles local time input and automatically converts to UTC output.
+
+## Overview
+
+The TimeHourInput component provides a user-friendly interface for selecting both date and time. It accepts local time input from the user and outputs UTC time in ISO 8601 format, making it ideal for applications that need to handle timezone-aware datetime data.
+
+## Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | string | Yes | - | Current value in ISO format (YYYY-MM-DDTHH:mm:ss.sssZ) |
+| `onChange` | function | Yes | - | Callback function when value changes |
+| `error` | string | No | - | Error message to display |
+| `classNames` | string | No | - | Additional CSS classes |
+| `minDate` | string | No | - | Minimum selectable date (YYYY-MM-DD) |
+
+## Usage
+
+### Basic Example
+
+```tsx
+import TimeHourInput from '@/components/inputs/timeHour/TimeHourInput';
+
+function MyComponent() {
+  const [dateTime, setDateTime] = useState('');
+
+  return (
+    <TimeHourInput 
+      value={dateTime}
+      onChange={setDateTime}
+    />
+  );
+}
+```
+
+### With Validation
+
+```tsx
+const [dateTime, setDateTime] = useState('');
+const [error, setError] = useState('');
+
+const handleChange = (value: string) => {
+  setDateTime(value);
+  
+  // Validate future date
+  if (value && new Date(value) < new Date()) {
+    setError('Please select a future date and time');
+  } else {
+    setError('');
+  }
+};
+
+<TimeHourInput 
+  value={dateTime}
+  onChange={handleChange}
+  error={error}
+/>
+```
+
+### With Minimum Date
+
+```tsx
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const minDate = tomorrow.toISOString().split('T')[0];
+
+<TimeHourInput 
+  value={dateTime}
+  onChange={setDateTime}
+  minDate={minDate}
+/>
+```
+
+### With Custom Styling
+
+```tsx
+<TimeHourInput 
+  value={dateTime}
+  onChange={setDateTime}
+  classNames="my-custom-class"
+/>
+```
+
+## Features
+
+- **Local to UTC Conversion**: Automatically converts local time input to UTC output
+- **Combined Input**: Single component for both date and time selection
+- **Material-UI Integration**: Uses Material-UI TextField components with consistent styling
+- **Validation Support**: Built-in error display and validation handling
+- **Minimum Date**: Restrict selectable dates to prevent past date selection
+- **24-Hour Format**: Uses 24-hour time format for precise time selection
+- **Responsive Design**: Connected input fields that work together seamlessly
+
+## Data Flow
+
+1. **Input**: User selects date and time in their local timezone
+2. **Processing**: Component converts the local datetime to UTC
+3. **Output**: Returns ISO 8601 UTC string via onChange callback
+
+### Example Data Flow
+
+```
+User Input (Local):  2024-01-15 14:30 (EST)
+Component Output:    2024-01-15T19:30:00.000Z (UTC)
+```
+
+## Time Handling
+
+The component uses specific locale settings for consistent behavior:
+
+- **Date Format**: Uses `en-CA` locale for YYYY-MM-DD format
+- **Time Format**: Uses `en-US` locale with 24-hour format
+- **UTC Conversion**: Automatic timezone conversion using JavaScript Date API
+
+## Dependencies
+
+- React 18+
+- Material-UI v5+
+- @mui/material
+
+## Styling
+
+The component uses Material-UI's filled variant TextFields with custom styling:
+- Connected appearance (right field border-radius removed from left field)
+- Consistent padding and alignment
+- Error state styling inherited from Material-UI
+
+## Browser Support
+
+Supports all modern browsers with HTML5 date and time input support:
+- Chrome 20+
+- Firefox 57+
+- Safari 14.1+
+- Edge 79+
+
+## Notes
+
+- The component outputs UTC time regardless of user's timezone
+- Empty values are handled gracefully
+- Date and time inputs are synchronized automatically
+- Minimum date validation is enforced at the browser level
+- Error styling is applied to both date and time fields simultaneously

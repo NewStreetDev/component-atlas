@@ -1,0 +1,18 @@
+{
+  "name": "Time Hour Input",
+  "category": "inputs",
+  "description": "A combined date and time input component that outputs UTC time and accepts local time input with validation support",
+  "tags": [
+    "input",
+    "time",
+    "date",
+    "datetime",
+    "form",
+    "validation",
+    "utc"
+  ],
+  "files": [
+    "TimeHourInput.tsx",
+    "demo.tsx"
+  ]
+}
