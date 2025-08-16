@@ -1,0 +1,18 @@
+{
+  "name": "Video Player",
+  "category": "media",
+  "description": "A feature-rich video player component with custom controls, fullscreen support, progress tracking, and watermark overlay",
+  "tags": [
+    "video",
+    "player",
+    "media",
+    "controls",
+    "fullscreen",
+    "react-player"
+  ],
+  "files": [
+    "VideoPlayer.tsx",
+    "VideoPlayerProvider.tsx",
+    "demo.tsx"
+  ]
+}

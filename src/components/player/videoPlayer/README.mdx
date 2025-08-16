@@ -1,0 +1,165 @@
+# VideoPlayer Component
+
+A comprehensive, feature-rich video player component built with React and Material-UI, powered by react-player.
+
+## Overview
+
+The VideoPlayer component provides a modern, customizable interface for playing videos with full control over playback, progress tracking, volume adjustment, and fullscreen capabilities. It includes a dynamic watermark overlay and supports timeline marks for enhanced user experience.
+
+## Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `url` | string | Yes | - | URL or path to the video file |
+| `marks` | array | No | [] | Timeline marks for important moments |
+| `onEnded` | function | No | - | Callback function when video ends |
+| `onReady` | function | No | - | Callback function when video is ready |
+
+### Marks Structure
+
+```typescript
+{
+  value: number;        // Time in seconds
+  label: string | ReactNode;  // Label to display
+}
+```
+
+## Usage
+
+### Basic Example
+
+```tsx
+import VideoPlayer from '@/components/player/videoPlayer/VideoPlayer';
+import { VideoPlayerProvider } from '@/components/player/videoPlayer/VideoPlayerProvider';
+
+function MyComponent() {
+  return (
+    <VideoPlayerProvider>
+      <VideoPlayer url="/videos/sample.mp4" />
+    </VideoPlayerProvider>
+  );
+}
+```
+
+### With Timeline Marks
+
+```tsx
+import { Tooltip } from '@mui/material';
+import { formatSecondToTimer } from '@/components/player/videoPlayer/VideoPlayer';
+
+<VideoPlayerProvider>
+  <VideoPlayer 
+    url="/videos/sample.mp4"
+    marks={[
+      { 
+        value: 30, 
+        label: (
+          <Tooltip
+            title={
+              <div>
+                <p>@user1</p>
+                <p>{formatSecondToTimer(30)}</p>
+              </div>
+            }
+            placement="bottom"
+          >
+            <div className="w-3 h-3 bg-blue-500 rounded-full cursor-pointer hover:bg-blue-400 transition-colors" />
+          </Tooltip>
+        )
+      },
+      { 
+        value: 120, 
+        label: (
+          <Tooltip
+            title={
+              <div>
+                <p>@user2</p>
+                <p>{formatSecondToTimer(120)}</p>
+              </div>
+            }
+            placement="bottom"
+          >
+            <div className="w-3 h-3 bg-green-500 rounded-full cursor-pointer hover:bg-green-400 transition-colors" />
+          </Tooltip>
+        )
+      }
+    ]}
+  />
+</VideoPlayerProvider>
+```
+
+### With Event Callbacks
+
+```tsx
+<VideoPlayerProvider>
+  <VideoPlayer 
+    url="/videos/sample.mp4"
+    onReady={() => console.log('Video ready')}
+    onEnded={() => console.log('Video ended')}
+  />
+</VideoPlayerProvider>
+```
+
+## Features
+
+- **Custom Controls**: Play/pause, forward 30s, rewind 10s buttons
+- **Progress Bar**: Interactive timeline with seeking capability and custom marks
+- **Volume Control**: Adjustable volume slider with mute/unmute
+- **Fullscreen Support**: Toggle fullscreen mode
+- **Time Display**: Current time and total duration
+- **Loading States**: Loading spinner and error handling
+- **Dynamic Watermark**: Moving watermark overlay for content protection
+- **Responsive Design**: Adapts to different screen sizes
+- **Keyboard Support**: Space for play/pause, arrow keys for seeking
+- **Mouse Interaction**: Click to play/pause, hover for controls
+
+## Context Provider
+
+The VideoPlayer component requires the `VideoPlayerProvider` to manage global state:
+
+```tsx
+import { VideoPlayerProvider } from '@/components/player/videoPlayer/VideoPlayerProvider';
+
+function App() {
+  return (
+    <VideoPlayerProvider>
+      {/* Your video player components */}
+    </VideoPlayerProvider>
+  );
+}
+```
+
+## Dependencies
+
+- React 18+
+- Material-UI v5+
+- @mui/icons-material
+- react-player
+- Tailwind CSS (for styling utilities)
+
+## Styling
+
+The component uses a combination of Material-UI components and Tailwind CSS classes. Custom styled components are used for the progress and volume sliders with hover effects.
+
+## Browser Support
+
+Supports all modern browsers with HTML5 video support. Video format support depends on the browser and the underlying react-player library:
+
+- **MP4**: All modern browsers
+- **WebM**: Chrome, Firefox, Opera
+- **YouTube**: All browsers with YouTube embed support
+- **Vimeo**: All browsers with Vimeo embed support
+
+## Performance Considerations
+
+- Uses `react-player/lazy` for code splitting
+- Optimized re-renders with proper state management
+- Debounced mouse move events for smooth interactions
+- Efficient watermark position updates
+
+## Notes
+
+- Videos should be served from a CORS-enabled server for cross-origin requests
+- The component automatically handles loading and error states
+- Watermark text can be configured through the VideoPlayerProvider
+- Timeline marks are optional and can be used to highlight important video segments
