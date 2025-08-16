@@ -1,0 +1,72 @@
+# Phone Input Component
+
+A sophisticated phone number input component built with Material-UI, featuring country code selection, flag display, and international phone number formatting.
+
+## Features
+
+- **Country Code Selection**: Searchable dropdown with country flags and calling codes
+- **Visual Indicators**: Country flags for easy country identification
+- **Split Input**: Separate fields for country code and phone number
+- **International Support**: Comprehensive country data with calling codes
+- **Accessible**: Full keyboard navigation support
+- **Customizable**: Error states, disabled states, and helper text
+- **TypeScript**: Fully typed with comprehensive interfaces
+
+## Usage
+
+```tsx
+import PhoneInput from '@/components/inputs/countryInput/CountryInput';
+
+function MyForm() {
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+
+  return (
+    <PhoneInput
+      value={phoneNumber}
+      onChange={setPhoneNumber}
+      label="Enter your phone number"
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | `undefined` | Current phone number with country code |
+| `onChange` | `(phone: string) => void` | - | Callback fired when phone number changes |
+| `label` | `string` | `"Enter phone number"` | Label for the phone input field |
+| `error` | `boolean` | `false` | Whether to show error state |
+| `helperText` | `string` | `undefined` | Helper text displayed below input |
+
+## Country Interface
+
+```tsx
+interface Country {
+  name: string;
+  capital: string;
+  area: number;
+  coordinates: [number, number];
+  currencies: { name: string; symbol?: string }[];
+  languages: string[];
+  maps: { googleMaps: string; openStreetMaps: string };
+  postalCode?: { format: string; regex?: string };
+  flags: { png: string; svg: string };
+  population: number;
+  emoji: string;
+  countryCallingCode: string;
+}
+```
+
+## Styling
+
+The component uses Tailwind CSS for styling and includes hover effects, proper spacing, and Material-UI theme integration. The country selector and phone input are visually connected with seamless borders.
+
+## Accessibility
+
+- Full keyboard navigation
+- Screen reader compatible
+- ARIA labels and descriptions
+- Focus management
+- Proper form field associations

@@ -1,0 +1,19 @@
+{
+  "name": "Phone Input",
+  "category": "inputs",
+  "description": "A phone number input component with country code selection, flag display and validation.",
+  "tags": [
+    "input",
+    "phone",
+    "country",
+    "form",
+    "validation",
+    "international"
+  ],
+  "files": [
+    "CountryInput.tsx",
+    "useCountries.tsx",
+    "countries.ts",
+    "demo.tsx"
+  ]
+}
