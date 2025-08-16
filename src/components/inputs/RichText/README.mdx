@@ -1,0 +1,191 @@
+# RichTextInput Component
+
+A powerful WYSIWYG rich text editor component built with TipTap, featuring comprehensive formatting tools, link management, and security features.
+
+## Overview
+
+The RichTextInput component provides a full-featured rich text editing experience with a comprehensive toolbar, real-time HTML output, and advanced features like link validation and debounced updates for optimal performance.
+
+## Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `value` | string | No | - | HTML content of the editor |
+| `onChange` | function | No | - | Callback function when content changes |
+| `className` | string | No | - | CSS classes for the container |
+| `editorClassName` | string | No | - | CSS classes for the editor content area |
+| `errors` | string | No | - | Error message to display |
+| `hasMenuBar` | boolean | No | true | Whether to show the formatting toolbar |
+
+## Usage
+
+### Basic Example
+
+```tsx
+import RichTextInput from '@/components/inputs/RichText/RichTextInput';
+
+function MyComponent() {
+  const [content, setContent] = useState('');
+
+  return (
+    <RichTextInput 
+      value={content}
+      onChange={setContent}
+    />
+  );
+}
+```
+
+### Without Toolbar
+
+```tsx
+<RichTextInput 
+  value={content}
+  onChange={setContent}
+  hasMenuBar={false}
+/>
+```
+
+### With Prefilled Content
+
+```tsx
+const initialContent = `
+  <h1>Welcome</h1>
+  <p>This is <strong>bold</strong> text with a <a href="https://example.com">link</a></p>
+`;
+
+<RichTextInput 
+  value={initialContent}
+  onChange={setContent}
+/>
+```
+
+### With Custom Styling
+
+```tsx
+<RichTextInput 
+  value={content}
+  onChange={setContent}
+  className="custom-container"
+  editorClassName="custom-editor"
+/>
+```
+
+## Features
+
+### Text Formatting
+- **Bold, Italic, Strikethrough**: Standard text formatting options
+- **Headings**: H1 and H2 heading levels
+- **Clear Formatting**: Remove all formatting from selected text
+- **Code Blocks**: Syntax-highlighted code blocks
+
+### Structure & Layout
+- **Text Alignment**: Left, center, right, and justify alignment
+- **Lists**: Bullet and numbered lists with proper nesting
+- **Blockquotes**: Quote blocks for highlighted content
+- **Horizontal Rules**: Visual dividers between content sections
+
+### Advanced Features
+- **Link Management**: Insert, edit, and remove links with validation
+- **Undo/Redo**: Full history management with configurable depth
+- **Security**: URL validation and protocol filtering
+- **Performance**: Debounced onChange events (300ms delay)
+
+## Toolbar Organization
+
+The toolbar is organized into three logical groups:
+
+1. **Text Formatting**: Bold, italic, strikethrough, clear format, headings, links, code blocks
+2. **Structure**: Text alignment, lists, blockquotes, horizontal rules
+3. **History**: Undo and redo operations
+
+## Link Security
+
+The component includes built-in security features for link handling:
+
+### Allowed Protocols
+- `http` and `https` (default: https)
+- Blocks `ftp`, `file`, and `mailto` protocols
+
+### Domain Filtering
+- Configurable blocked domains list
+- Prevents autolink for specified domains
+- URL validation before insertion
+
+### Example Security Configuration
+```javascript
+// Blocked domains (configurable in component)
+const disallowedDomains = [
+  "example-phishing.com",
+  "malicious-site.net"
+];
+```
+
+## Performance Optimizations
+
+- **Memoization**: Component is wrapped with React.memo
+- **Debounced Updates**: onChange events are debounced to prevent excessive re-renders
+- **Optimized Extensions**: TipTap extensions are created once and reused
+- **Efficient History**: Limited history depth (10 levels) to save memory
+
+## Styling
+
+The component uses a combination of:
+- **Custom CSS**: Imported from `tiptap.css` for editor-specific styles
+- **Tailwind Classes**: For layout and responsive design
+- **Material-UI**: For toolbar buttons and components
+
+### Key Style Classes
+- Editor background: `bg-primary-800`
+- Active buttons: `!bg-accent-400/40`
+- Focus states: `focus:border-b-accent-600`
+
+## Dependencies
+
+- **@tiptap/react**: Core editor functionality
+- **@tiptap/starter-kit**: Basic editing features
+- **@tiptap/extension-*****: Specific extensions for features
+- **@mui/material**: UI components for toolbar
+- **@mui/icons-material**: Icons for toolbar buttons
+
+## Browser Support
+
+Supports all modern browsers:
+- Chrome 88+
+- Firefox 87+
+- Safari 14+
+- Edge 88+
+
+## Accessibility
+
+- Keyboard navigation support
+- Screen reader compatible
+- Focus management
+- ARIA attributes on toolbar buttons
+
+## Customization
+
+### Custom Extensions
+```tsx
+// Extend the editor with additional TipTap extensions
+const customExtensions = [
+  ...defaultExtensions,
+  MyCustomExtension.configure({
+    // configuration options
+  })
+];
+```
+
+### Custom Toolbar
+The MenuBar component can be customized by modifying the button arrays:
+- `editorButtons`: Text formatting tools
+- `editorStructureButtons`: Layout and structure tools
+- `editorRedoButtons`: History management tools
+
+## Technical Notes
+
+- **HTML Output**: Returns clean, semantic HTML
+- **Debounce Delay**: 300ms delay on onChange events
+- **History Depth**: Limited to 10 levels for performance
+- **Word Breaking**: Proper word-wrap and overflow handling
+- **Link Validation**: Comprehensive URL security checking

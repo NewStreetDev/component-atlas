@@ -1,0 +1,20 @@
+{
+  "name": "Rich Text Input",
+  "category": "inputs",
+  "description": "A powerful rich text editor component built with TipTap, featuring formatting controls, links, lists, and code blocks",
+  "tags": [
+    "input",
+    "editor",
+    "richtext",
+    "tiptap",
+    "formatting",
+    "wysiwyg",
+    "text"
+  ],
+  "files": [
+    "RichTextInput.tsx",
+    "debounce.tsx",
+    "tiptap.css",
+    "demo.tsx"
+  ]
+}
