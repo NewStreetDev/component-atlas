@@ -1,0 +1,64 @@
+# AudioPlayer Component
+
+A modern, customizable audio player component built with React and Material-UI.
+
+## Overview
+
+The AudioPlayer component provides a clean, intuitive interface for playing audio files with full playback controls, progress tracking, and volume adjustment.
+
+## Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `url` | string | Yes | - | URL or path to the audio file |
+| `title` | string | No | - | Title of the audio track |
+
+## Usage
+
+### Basic Example
+
+```tsx
+import AudioPlayer from '@/components/player/audioPlayer/AudioPlayer';
+
+function MyComponent() {
+  return (
+    <AudioPlayer 
+      url="/audio/sample.mp3"
+      title="My Audio Track"
+    />
+  );
+}
+```
+
+## Features
+
+- **Play/Pause Controls**: Easy-to-use play and pause buttons
+- **Progress Bar**: Visual progress indicator with seeking capability
+- **Volume Control**: Adjustable volume slider
+- **Time Display**: Shows current time and total duration
+- **Responsive Design**: Adapts to different screen sizes
+- **Material-UI Integration**: Consistent with Material-UI design system
+
+## Dependencies
+
+- React 18+
+- Material-UI v5+
+- @mui/icons-material
+
+## Styling
+
+The component uses Material-UI's theming system and can be customized using the `sx` prop or by overriding Material-UI theme values.
+
+## Browser Support
+
+Supports all modern browsers with HTML5 audio support:
+- Chrome 4+
+- Firefox 3.5+
+- Safari 4+
+- Edge 12+
+
+## Notes
+
+- Audio files should be served from a CORS-enabled server for cross-origin requests
+- Supported audio formats depend on browser capabilities (MP3, WAV, OGG, AAC, etc.)
+- Auto-play may be blocked by browser policies depending on user interaction

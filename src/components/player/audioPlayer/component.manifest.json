@@ -1,0 +1,17 @@
+{
+  "name": "Audio Player",
+  "category": "media",
+  "description": "A customizable audio player component with playback controls, progress bar, and volume adjustment",
+  "tags": [
+    "audio",
+    "player",
+    "media",
+    "controls",
+    "music"
+  ],
+  "files": [
+    "AudioPlayer.tsx",
+    "AudioPlayerProvider.tsx",
+    "demo.tsx"
+  ]
+}
