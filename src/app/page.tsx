@@ -1,28 +1,28 @@
 import Link from "next/link";
 import { Button, Container, Typography, Box, Paper } from "@mui/material";
-import { Code as CodeIcon, ViewModule as ViewModuleIcon } from "@mui/icons-material";
+import { Code as CodeIcon, Description, ViewModule as ViewModuleIcon } from "@mui/icons-material";
 
 export default function Home() {
   return (
     <Container maxWidth="lg" className="py-16">
-      <Box className="text-center">
-        <Typography variant="h1" component="h1" className="mb-4 font-bold">
+      <Box className="text-center!">
+        <Typography variant="h1" component="h1" className="mb-4! font-semibold! text-4xl! sm:text-6xl! md:text-7xl! lg:text-8xl!">
           Component Atlas
         </Typography>
-        <Typography variant="h2" component="h2" className="mb-8 text-gray-600">
+        <Typography variant="h2" component="h2" className="mb-8! text-gray-600! text-xl! sm:text-2xl! md:text-3xl! lg:text-4xl!">
           Discover, explore, and understand our UI component library
         </Typography>
         
-        <Paper className="p-8 mb-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
-          <Typography variant="h6" component="div" className="mb-4">
+        <Paper className="p-8! mb-8! bg-gradient-to-br! from-blue-50! to-indigo-50!">
+          <Typography variant="h6" component="div" className="mb-4! text-sm! sm:text-base! md:text-lg!">
             Browse our comprehensive collection of reusable components
           </Typography>
-          <Typography variant="body1" className="mb-6 text-gray-700 dark:text-gray-300">
+          <Typography variant="body1" className="mb-6! text-gray-700! text-xs! sm:text-sm! md:text-base!">
             Each component comes with live previews, complete source code, documentation,
             and practical examples to help you integrate them into your projects.
           </Typography>
           
-          <Box className="flex gap-4 justify-center flex-col sm:flex-row">
+          <Box className="flex! gap-4! justify-center! flex-col! sm:flex-row!">
             <Button
               component={Link}
               href="/catalog"
@@ -67,7 +67,7 @@ export default function Home() {
           </Paper>
           
           <Paper className="p-6 text-center">
-            <Typography className="text-purple-600 mb-4 text-5xl">📚</Typography>
+            <Description className="text-blue-600 mb-4" sx={{ fontSize: 48 }} />
             <Typography variant="h6" className="mb-2">
               Documentation
             </Typography>
