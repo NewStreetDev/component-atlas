@@ -9,7 +9,7 @@ export default function LoadingBarWrapper({
 }) {
   return (
     <ProgressProvider
-      color={"#7244eb"}
+      color={"oklch(54.6% 0.245 262.881)"}
       height="4px"
       options={{ showSpinner: false }}
       shallowRouting
