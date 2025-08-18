@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import { cn } from '@/shared/utils/cn';
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import { cn } from "@/shared/utils/cn";
 
 interface MarkdownRendererProps {
   content: string;
@@ -10,23 +10,23 @@ interface MarkdownRendererProps {
   fontSize: string;
 }
 
-export default function MarkdownRenderer({ content, isDark, fontSize }: MarkdownRendererProps) {
+export default function MarkdownRenderer({
+  content,
+  isDark,
+  fontSize,
+}: MarkdownRendererProps) {
   return (
     <div
       className={cn(
         "pt-12 p-6",
-        isDark 
-          ? "bg-black text-gray-100" 
-          : "bg-white text-gray-900"
+        isDark ? "bg-black text-gray-100" : "bg-white text-gray-900"
       )}
       style={{ fontSize }}
     >
       <div
         className={cn(
           "prose max-w-none",
-          isDark 
-            ? "prose-invert prose-gray" 
-            : "prose-gray"
+          isDark ? "prose-invert prose-gray" : "prose-gray"
         )}
       >
         <ReactMarkdown
@@ -56,7 +56,12 @@ export default function MarkdownRenderer({ content, isDark, fontSize }: Markdown
             code: ({ children, className }) => {
               const isInline = !className;
               return isInline ? (
-                <code className="bg-gray-200! dark:bg-gray-700! px-1! py-0.5! rounded! text-xs! sm:text-sm!">
+                <code
+                  className={cn(
+                    isDark ? "bg-gray-900!" : "bg-gray-200!",
+                    "px-1! py-0.5! rounded! text-xs! sm:text-sm!"
+                  )}
+                >
                   {children}
                 </code>
               ) : (
@@ -64,15 +69,20 @@ export default function MarkdownRenderer({ content, isDark, fontSize }: Markdown
               );
             },
             pre: ({ children }) => (
-              <pre className="bg-gray-100! dark:bg-gray-800! p-4! rounded-lg! my-4! overflow-x-auto! text-xs! sm:text-sm!">
+              <pre
+                className={cn(
+                  isDark ? "bg-gray-900!" : "bg-gray-200!",
+                  "p-4! rounded-lg! my-4! overflow-x-auto! text-xs! sm:text-sm!"
+                )}
+              >
                 {children}
               </pre>
             ),
             a: ({ href, children }) => (
-              <a 
-                href={href} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-600! hover:text-blue-800! dark:text-blue-400! dark:hover:text-blue-300! underline!"
               >
                 {children}
