@@ -1,0 +1,18 @@
+{
+  "name": "Confirmation Dialog",
+  "category": "dialogs",
+  "description": "A customizable confirmation dialog with positive/negative action styling and flexible trigger options.",
+  "tags": [
+    "dialog",
+    "confirmation",
+    "modal",
+    "action",
+    "delete",
+    "save",
+    "cancel"
+  ],
+  "files": [
+    "ConfirmationDialog.tsx",
+    "demo.tsx"
+  ]
+}

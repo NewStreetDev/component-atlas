@@ -1,0 +1,297 @@
+# Confirmation Dialog Component
+
+A flexible and customizable confirmation dialog component with support for both positive and negative actions, custom trigger elements, and external control options.
+
+## Features
+
+- **Dual Action Types**: Support for positive (save, confirm) and negative (delete, cancel) action styling
+- **Flexible Triggers**: Use any element as a trigger with the polymorphic `as` prop
+- **External Control**: Control dialog state externally via `isOpen` prop
+- **Custom Styling**: Theme-aware styling with positive/negative action colors
+- **Accessibility**: Full ARIA support and keyboard navigation
+- **Event Handling**: Proper event propagation control
+- **Responsive Design**: Optimized layout for different screen sizes
+- **Visual Effects**: Subtle blur effects for enhanced visual appeal
+
+## Usage
+
+```tsx
+import ConfirmationDialog from '@/components/dialogs/ConfirmationDialog';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <ConfirmationDialog
+      title="Delete Item"
+      content="Are you sure you want to delete this item?"
+      confirmText="Delete"
+      cancelText="Cancel"
+      isPositiveAction={false}
+      onConfirm={() => console.log('Confirmed')}
+      onCancel={() => console.log('Cancelled')}
+    >
+      <button>Delete</button>
+    </ConfirmationDialog>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Title displayed in the dialog header |
+| `content` | `string` | - | Main content/message of the dialog |
+| `confirmText` | `string` | - | Text for the confirm button |
+| `cancelText` | `string` | - | Text for the cancel button |
+| `onConfirm` | `() => void` | - | Callback when user confirms the action |
+| `onCancel` | `() => void` | - | Callback when user cancels the action |
+| `isPositiveAction` | `boolean` | `true` | Controls styling theme (blue vs red) |
+| `disabled` | `boolean` | `false` | Disables the dialog trigger |
+| `children` | `React.ReactNode` | - | Trigger element content |
+| `isOpen` | `boolean \| null` | `null` | External control of dialog state |
+| `as` | `ElementType` | `"span"` | Element type to render as trigger |
+| `className` | `string` | - | CSS classes for the trigger element |
+| `sx` | `object` | - | Material-UI sx prop for dialog styling |
+
+## Action Types
+
+### Positive Actions (isPositiveAction: true)
+- **Use for**: Save, Confirm, Submit, Proceed actions
+- **Styling**: Blue/accent color theme
+- **Examples**: Save document, confirm changes, submit form
+
+### Negative Actions (isPositiveAction: false)
+- **Use for**: Delete, Remove, Logout, Cancel actions
+- **Styling**: Red/error color theme
+- **Examples**: Delete item, logout user, remove data
+
+## Examples
+
+### Basic Delete Confirmation
+```tsx
+<ConfirmationDialog
+  title="Delete Item"
+  content="This action cannot be undone. Are you sure?"
+  confirmText="Delete"
+  cancelText="Cancel"
+  isPositiveAction={false}
+  onConfirm={() => deleteItem()}
+  onCancel={() => console.log('Delete cancelled')}
+>
+  <Button variant="contained" color="error">
+    Delete
+  </Button>
+</ConfirmationDialog>
+```
+
+### Save Confirmation
+```tsx
+<ConfirmationDialog
+  title="Save Changes"
+  content="Do you want to save your changes before leaving?"
+  confirmText="Save"
+  cancelText="Discard"
+  isPositiveAction={true}
+  onConfirm={() => saveDocument()}
+  onCancel={() => discardChanges()}
+>
+  <Button variant="contained" color="primary">
+    Save Document
+  </Button>
+</ConfirmationDialog>
+```
+
+### Custom Trigger Element
+```tsx
+<ConfirmationDialog
+  title="Confirm Action"
+  content="This will perform a custom action."
+  confirmText="Proceed"
+  cancelText="Cancel"
+  isPositiveAction={true}
+  onConfirm={() => customAction()}
+  onCancel={() => console.log('Cancelled')}
+  as="div"
+  className="cursor-pointer p-2 bg-blue-500 text-white rounded"
+>
+  <span>Click me</span>
+</ConfirmationDialog>
+```
+
+### External Control
+```tsx
+function ExternallyControlledDialog() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setDialogOpen(true)}>
+        Open Dialog
+      </Button>
+      
+      <ConfirmationDialog
+        title="External Control"
+        content="This dialog is controlled externally."
+        confirmText="OK"
+        cancelText="Cancel"
+        isOpen={dialogOpen}
+        onConfirm={() => {
+          console.log('Confirmed');
+          setDialogOpen(false);
+        }}
+        onCancel={() => {
+          console.log('Cancelled');
+          setDialogOpen(false);
+        }}
+      >
+        <span></span>
+      </ConfirmationDialog>
+    </>
+  );
+}
+```
+
+### Multiple Confirmations
+```tsx
+function MultipleDialogs() {
+  return (
+    <div className="space-x-4">
+      <ConfirmationDialog
+        title="Delete User"
+        content="This will permanently delete the user account."
+        confirmText="Delete User"
+        cancelText="Keep User"
+        isPositiveAction={false}
+        onConfirm={() => deleteUser()}
+        onCancel={() => console.log('User deletion cancelled')}
+      >
+        <Button color="error">Delete User</Button>
+      </ConfirmationDialog>
+
+      <ConfirmationDialog
+        title="Publish Article"
+        content="This will make the article visible to all users."
+        confirmText="Publish"
+        cancelText="Keep Draft"
+        isPositiveAction={true}
+        onConfirm={() => publishArticle()}
+        onCancel={() => console.log('Publishing cancelled')}
+      >
+        <Button color="primary">Publish</Button>
+      </ConfirmationDialog>
+    </div>
+  );
+}
+```
+
+## Styling and Themes
+
+### Positive Action Styling
+- **Primary color**: Blue/accent theme
+- **Button colors**: Primary contained and outlined buttons
+- **Visual effect**: Blue blur effect in background
+
+### Negative Action Styling
+- **Error color**: Red theme
+- **Button colors**: Error contained and outlined buttons
+- **Visual effect**: Red blur effect in background
+
+### Custom Styling
+Override dialog appearance using the `sx` prop:
+
+```tsx
+<ConfirmationDialog
+  // ... other props
+  sx={{
+    '& .MuiDialog-paper': {
+      backgroundColor: 'custom-background',
+      border: '2px solid custom-color',
+    }
+  }}
+>
+  {children}
+</ConfirmationDialog>
+```
+
+## Control Modes
+
+### Internal Control (Default)
+- Dialog state managed internally
+- Triggered by clicking the child element
+- Automatically opens and closes
+
+### External Control
+- Set `isOpen` to a boolean value
+- Control dialog state from parent component
+- Useful for programmatic triggering
+
+```tsx
+// Internal control (default)
+<ConfirmationDialog {...props}>
+  <Button>Click me</Button>
+</ConfirmationDialog>
+
+// External control
+<ConfirmationDialog {...props} isOpen={externalState}>
+  <span></span>
+</ConfirmationDialog>
+```
+
+## Accessibility
+
+- **ARIA Labels**: Proper `aria-labelledby` and `aria-describedby` attributes
+- **Keyboard Navigation**: Full keyboard support with tab navigation
+- **Focus Management**: Automatic focus handling when dialog opens/closes
+- **Screen Readers**: Semantic dialog structure for screen reader compatibility
+- **Escape Key**: Close dialog with Escape key
+
+## Event Handling
+
+The component includes proper event handling:
+
+- **Event Propagation**: `stopPropagation()` prevents unwanted bubbling
+- **Disabled State**: Respects disabled prop for trigger prevention
+- **Click Outside**: Supports clicking outside to close (Material-UI default)
+- **Callback Execution**: Reliable callback execution before state changes
+
+## Performance Considerations
+
+- **Conditional Rendering**: Dialog content only renders when needed
+- **Event Cleanup**: Proper cleanup of event listeners
+- **State Management**: Efficient internal state handling
+- **Re-render Optimization**: Minimal unnecessary re-renders
+
+## Common Use Cases
+
+1. **Data Deletion**: Confirm before deleting important data
+2. **Form Submission**: Confirm before submitting critical forms
+3. **Navigation**: Confirm before leaving with unsaved changes
+4. **User Management**: Confirm account actions (logout, delete account)
+5. **Content Publishing**: Confirm before making content public
+6. **Settings Changes**: Confirm before applying system changes
+7. **File Operations**: Confirm before file deletion or overwrites
+
+## Best Practices
+
+### Content Writing
+- Use clear, concise language in title and content
+- Explain consequences of the action
+- Use action-specific button text (not just "OK/Cancel")
+
+### Action Classification
+- Use `isPositiveAction: false` for destructive actions
+- Use `isPositiveAction: true` for constructive actions
+- Consider the user's mental model of the action
+
+### UX Considerations
+- Don't overuse confirmation dialogs for routine actions
+- Provide alternative approaches for frequently repeated actions
+- Consider the severity and reversibility of the action
+
+### Technical Implementation
+- Always handle both confirm and cancel callbacks
+- Use external control for complex state management
+- Test with keyboard navigation and screen readers
