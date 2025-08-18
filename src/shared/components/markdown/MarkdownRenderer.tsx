@@ -14,7 +14,7 @@ export default function MarkdownRenderer({ content, isDark, fontSize }: Markdown
   return (
     <div
       className={cn(
-        "overflow-auto h-full pt-12 p-6",
+        "pt-12 p-6",
         isDark 
           ? "bg-black text-gray-100" 
           : "bg-white text-gray-900"

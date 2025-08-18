@@ -25,7 +25,6 @@ export default function CodeRenderer({
       wrapLines
       customStyle={{
         margin: 0,
-        height: '100%',
         paddingTop: '3rem',
         fontSize,
       }}

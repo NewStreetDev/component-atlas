@@ -24,3 +24,23 @@ body {
    /*color: var(--foreground); */
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Global Scrollbar Styling */
+
+/* WebKit Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Transparent background for track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(107, 114, 128, 0.8); /* Semi-transparent thumb color */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.8); /* Darker semi-transparent on hover */
+}

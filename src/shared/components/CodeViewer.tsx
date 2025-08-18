@@ -106,7 +106,7 @@ export default function CodeViewer({
           </IconButton>
         </DialogTitle>
 
-        <DialogContent className="p-0">
+        <DialogContent className="p-0 overflow-hidden">
           {loading ? (
             <CodeViewerSkeleton />
           ) : files.length === 0 ? (
@@ -127,7 +127,7 @@ export default function CodeViewer({
                 scrollButtons="auto"
                 className="border-b!"
               >
-                {files.map((file, index) => (
+                {files.map((file) => (
                   <Tab
                     key={file.name}
                     label={
@@ -150,7 +150,7 @@ export default function CodeViewer({
               </Tabs>
 
               {files[activeTab] && (
-                <Box className="flex-1! relative!">
+                <Box className="flex-1! relative! overflow-hidden!">
                   <Box className="absolute! top-2! right-2! z-10! flex! gap-1!">
                     <IconButton
                       onClick={toggleCodeTheme}
@@ -198,11 +198,13 @@ export default function CodeViewer({
                     </Typography>
                   </Box>
 
-                  <FileContentRenderer
-                    file={files[activeTab]}
-                    isDark={codeTheme === "dark"}
-                    fontSize={getCodeFontSize()}
-                  />
+                  <Box className="h-full! overflow-auto!">
+                    <FileContentRenderer
+                      file={files[activeTab]}
+                      isDark={codeTheme === "dark"}
+                      fontSize={getCodeFontSize()}
+                    />
+                  </Box>
                 </Box>
               )}
             </Box>
