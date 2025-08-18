@@ -1,0 +1,27 @@
+{
+  "name": "Notification System",
+  "category": "notifications",
+  "description": "Complete notification system with real-time updates, drawer interface, filtering, and comprehensive state management.",
+  "tags": [
+    "notifications",
+    "drawer",
+    "real-time",
+    "provider",
+    "context",
+    "filtering",
+    "pagination",
+    "toast"
+  ],
+  "files": [
+    "NotificationProvider.tsx",
+    "NotificationDrawer.tsx",
+    "NotificationCard.tsx",
+    "NotificationCardSkeleton.tsx",
+    "NotificationFilter.tsx",
+    "NotificationListItem.tsx",
+    "NotificationOrder.tsx",
+    "TextDisplayer.tsx",
+    "Notifications.ts",
+    "demo.tsx"
+  ]
+}
