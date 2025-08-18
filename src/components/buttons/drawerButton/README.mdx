@@ -1,0 +1,256 @@
+# Drawer Button Component
+
+A versatile button component that opens a customizable side drawer with responsive design support and Material-UI integration.
+
+## Features
+
+- **Responsive Design**: Automatically adjusts to full-width on mobile devices
+- **Custom Icons**: Support for any React icon component
+- **Flexible Headers**: Choose between simple title or custom header content
+- **Configurable Width**: Set custom drawer width with responsive behavior
+- **Tooltip Support**: Optional tooltips for better user guidance
+- **Close Callbacks**: Execute custom logic when drawer closes
+- **Material-UI Integration**: Built with Material-UI for consistent theming
+- **Smooth Animations**: Hardware-accelerated transitions and hover effects
+- **Accessibility**: Full keyboard navigation and screen reader support
+
+## Usage
+
+```tsx
+import DrawerButton from '@/components/buttons/DrawerButton';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <DrawerButton
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      title="My Drawer"
+      tooltip="Open drawer panel"
+    >
+      <div className="p-4">
+        <p>Your drawer content goes here</p>
+      </div>
+    </DrawerButton>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Content to display inside the drawer |
+| `isOpen` | `boolean` | - | Controls whether the drawer is open |
+| `setIsOpen` | `(isOpen: boolean) => void` | - | Function to control the drawer open state |
+| `icon` | `React.ReactNode` | `<MenuOpenIcon />` | Custom icon to display in the button |
+| `title` | `string` | - | Title to display in the drawer header |
+| `header` | `React.ReactNode` | - | Custom header content for the drawer |
+| `onClose` | `() => void` | - | Callback function called when drawer is closed |
+| `width` | `number \| string` | `"50%"` | Width of the drawer (100% on mobile) |
+| `tooltip` | `string` | - | Tooltip text to show on button hover |
+
+## Component Behavior
+
+### Responsive Design
+- **Desktop/Tablet**: Uses specified width (default 50%)
+- **Mobile** (`< md breakpoint`): Automatically becomes full-width (100%)
+- **Touch Optimization**: Optimized for touch interactions on mobile devices
+
+### Header Options
+You can choose between two header styles:
+- **Simple Title**: Pass a `title` string for automatic header with close button
+- **Custom Header**: Pass `header` JSX for complete header customization
+
+Note: You should provide either `title` OR `header`, not both.
+
+### State Management
+The component requires external state management:
+```tsx
+const [drawerOpen, setDrawerOpen] = useState(false);
+```
+
+## Examples
+
+### Basic Drawer with Title
+```tsx
+<DrawerButton
+  isOpen={isOpen}
+  setIsOpen={setIsOpen}
+  title="Navigation Menu"
+  tooltip="Open navigation"
+>
+  <nav className="p-4">
+    <ul className="space-y-2">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+</DrawerButton>
+```
+
+### Custom Icon and Width
+```tsx
+<DrawerButton
+  icon={<SettingsIcon />}
+  isOpen={settingsOpen}
+  setIsOpen={setSettingsOpen}
+  title="Settings"
+  width="400px"
+  tooltip="Open settings panel"
+>
+  <div className="p-4">
+    <h3>Application Settings</h3>
+    {/* Settings content */}
+  </div>
+</DrawerButton>
+```
+
+### Custom Header with Badge
+```tsx
+<DrawerButton
+  icon={<NotificationsIcon />}
+  isOpen={notificationsOpen}
+  setIsOpen={setNotificationsOpen}
+  header={
+    <div className="flex items-center justify-between w-full">
+      <div className="flex items-center gap-2">
+        <NotificationsIcon />
+        <Typography variant="h6">Notifications</Typography>
+        <Badge badgeContent={3} color="error">
+          <span></span>
+        </Badge>
+      </div>
+    </div>
+  }
+  onClose={() => console.log('Notifications closed')}
+>
+  <div className="p-4">
+    {/* Notification content */}
+  </div>
+</DrawerButton>
+```
+
+### Multiple Drawers
+```tsx
+function MultiDrawerExample() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
+
+  return (
+    <div className="flex gap-2">
+      <DrawerButton
+        isOpen={menuOpen}
+        setIsOpen={setMenuOpen}
+        title="Menu"
+        width="300px"
+      >
+        {/* Menu content */}
+      </DrawerButton>
+      
+      <DrawerButton
+        icon={<SettingsIcon />}
+        isOpen={settingsOpen}
+        setIsOpen={setSettingsOpen}
+        title="Settings"
+        width="400px"
+      >
+        {/* Settings content */}
+      </DrawerButton>
+      
+      <DrawerButton
+        icon={<HelpIcon />}
+        isOpen={helpOpen}
+        setIsOpen={setHelpOpen}
+        title="Help"
+        width="350px"
+      >
+        {/* Help content */}
+      </DrawerButton>
+    </div>
+  );
+}
+```
+
+## Styling
+
+The component uses Material-UI styling with Tailwind CSS classes:
+
+### Button Styling
+- Hover effects with color transitions
+- Small size for compact layouts
+- Group hover support for parent containers
+
+### Drawer Styling
+- Right-anchored positioning
+- Custom background (black) with white text
+- Border styling with primary colors
+- Elevation for depth perception
+
+### Custom Styling
+Override styles using Material-UI's `sx` prop:
+
+```tsx
+<DrawerButton
+  // ... other props
+  sx={{
+    '& .MuiDrawer-paper': {
+      backgroundColor: 'custom-background',
+      borderLeft: '2px solid custom-color',
+    }
+  }}
+>
+  {children}
+</DrawerButton>
+```
+
+## Accessibility
+
+- **Keyboard Navigation**: Full keyboard support for opening/closing
+- **Screen Readers**: Proper ARIA labels and semantic structure
+- **Focus Management**: Automatic focus handling during state changes
+- **Tooltips**: Accessible tooltip implementation
+- **Close Actions**: Multiple ways to close (button, outside click, escape key)
+
+## Performance
+
+- **Efficient Rendering**: Only renders drawer content when needed
+- **Optimized Re-renders**: Minimal unnecessary re-renders
+- **Memory Management**: Proper cleanup of event listeners
+- **Animation Performance**: Hardware-accelerated CSS transitions
+
+## Common Use Cases
+
+1. **Navigation Menus**: Primary or secondary navigation panels
+2. **Settings Panels**: Configuration and preference interfaces
+3. **Filter Controls**: Search and filter interfaces for data tables
+4. **Notification Panels**: Message and alert displays
+5. **Shopping Carts**: E-commerce cart and checkout flows
+6. **Help Documentation**: Contextual help and support content
+7. **User Profiles**: Account information and profile management
+
+## Best Practices
+
+### State Management
+- Use separate state variables for multiple drawers
+- Consider using a context provider for complex drawer orchestration
+- Reset form state when drawers close if needed
+
+### Content Organization
+- Keep drawer content focused and scannable
+- Use proper heading hierarchy within drawer content
+- Consider loading states for dynamic content
+
+### Mobile Optimization
+- Test drawer content on actual mobile devices
+- Ensure touch targets are appropriately sized
+- Consider shorter content for mobile screens
+
+### Performance
+- Lazy load heavy content within drawers
+- Debounce rapid open/close actions if needed
+- Use React.memo for complex drawer content
