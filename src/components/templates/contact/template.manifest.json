@@ -1,0 +1,52 @@
+{
+  "name": "Contact Templates",
+  "category": "contact",
+  "description": "Collection of 5 different contact page designs, from minimalist to corporate",
+  "tags": [
+    "contact",
+    "form",
+    "page",
+    "template",
+    "responsive",
+    "mui",
+    "react-hook-form"
+  ],
+  "type": "page",
+  "templates": [
+    {
+      "id": "minimal",
+      "name": "Minimalist Contact",
+      "description": "Clean and simple design with centered form",
+      "file": "MinimalContact.tsx",
+      "preview": "Centered form with minimalist design on light gray background"
+    },
+    {
+      "id": "modern",
+      "name": "Modern Contact",
+      "description": "Modern design with side contact information and gradients",
+      "file": "ModernContact.tsx",
+      "preview": "Split layout with form and contact information, colorful gradients"
+    },
+    {
+      "id": "creative",
+      "name": "Creative Contact",
+      "description": "Vibrant design with floating elements and eye-catching colors",
+      "file": "CreativeContact.tsx",
+      "preview": "Radial gradient background, floating elements and glassmorphism form"
+    },
+    {
+      "id": "corporate",
+      "name": "Corporate Contact",
+      "description": "Professional design with statistics and complete business form",
+      "file": "CorporateContact.tsx",
+      "preview": "Dark header, stats in cards, professional form with multiple fields"
+    },
+    {
+      "id": "startup",
+      "name": "Startup Contact",
+      "description": "Dynamic design focused on startups with tech elements and animations",
+      "file": "StartupContact.tsx",
+      "preview": "Dark background with tech elements, startup form with specific fields"
+    }
+  ]
+}
