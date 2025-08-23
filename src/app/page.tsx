@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button, Container, Typography, Box, Paper } from "@mui/material";
-import { Code as CodeIcon, Description, ViewModule as ViewModuleIcon } from "@mui/icons-material";
+import { Code as CodeIcon, Description, ViewModule as ViewModuleIcon, Web } from "@mui/icons-material";
 
 export default function Home() {
   return (
@@ -34,6 +34,16 @@ export default function Home() {
               Browse Components
             </Button>
             <Button
+              component={Link}
+              href="/templates"
+              variant="contained"
+              size="large"
+              startIcon={<Web />}
+              className="bg-purple-600 hover:bg-purple-700"
+            >
+              Page Templates
+            </Button>
+            <Button
               variant="outlined"
               size="large"
               startIcon={<CodeIcon />}
@@ -45,7 +55,7 @@ export default function Home() {
           </Box>
         </Paper>
 
-        <Box className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Paper className="p-6 text-center">
             <ViewModuleIcon className="text-blue-600 mb-4" sx={{ fontSize: 48 }} />
             <Typography variant="h6" className="mb-2">
@@ -53,6 +63,16 @@ export default function Home() {
             </Typography>
             <Typography variant="body2" color="text.secondary">
               See components in action with interactive demos and examples
+            </Typography>
+          </Paper>
+          
+          <Paper className="p-6 text-center">
+            <Web className="text-purple-600 mb-4" sx={{ fontSize: 48 }} />
+            <Typography variant="h6" className="mb-2">
+              Page Templates
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Complete page designs ready to use in your projects
             </Typography>
           </Paper>
           
