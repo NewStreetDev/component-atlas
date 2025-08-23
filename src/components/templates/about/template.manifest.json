@@ -1,0 +1,39 @@
+{
+  "name": "About Us Templates",
+  "category": "about",
+  "description": "Collection of 3 distinct About Us page designs, each with unique personality and storytelling approach",
+  "tags": [
+    "about",
+    "company",
+    "team",
+    "story",
+    "values",
+    "responsive",
+    "mui",
+    "interactive"
+  ],
+  "type": "page",
+  "templates": [
+    {
+      "id": "corporate",
+      "name": "Corporate Storytelling Excellence",
+      "description": "Professional and sophisticated design with interactive timeline, leadership profiles, and animated statistics",
+      "file": "CorporateAbout.tsx",
+      "preview": "Blue gradient hero, interactive timeline, leadership team cards, animated counters, and client testimonials"
+    },
+    {
+      "id": "tech",
+      "name": "Immersive Technology Experience",
+      "description": "Cutting-edge design with animated particles, interactive process visualization, and technology showcase",
+      "file": "TechAbout.tsx",
+      "preview": "Dark theme with animated particles, interactive process steps, team hover effects, and global presence map"
+    },
+    {
+      "id": "human",
+      "name": "Human-Centered Warmth",
+      "description": "Warm and personal approach with founder story, day-in-life scenes, and community impact highlights",
+      "file": "HumanAbout.tsx",
+      "preview": "Warm yellow tones, personal founder story, team personality cards, and community project showcase"
+    }
+  ]
+}
