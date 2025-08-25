@@ -115,10 +115,10 @@ export default function StartupContact() {
                 <Rocket sx={{ fontSize: '2rem' }} />
               </Avatar>
               <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: 'white' }}>
-                Let's launch your startup!
+                Let&apos;s launch your startup!
               </Typography>
               <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.8)' }}>
-                Tell us your vision and we'll help make it reality
+                Tell us your vision and we&apos;ll help make it reality
               </Typography>
             </Box>
 
@@ -310,7 +310,7 @@ export default function StartupContact() {
                   {isSubmitting ? 'Sending...' : 'Let\'s take off together! 🚀'}
                 </Button>
                 <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.6)', mt: 2 }}>
-                  We'll contact you within 24 hours
+                  We&apos;ll contact you within 24 hours
                 </Typography>
               </Box>
             </Box>

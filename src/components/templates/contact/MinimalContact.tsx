@@ -28,7 +28,7 @@ export default function MinimalContact() {
             Contact Us
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-            We'd love to hear from you. Send us a message and we'll respond soon.
+            We&apos;d love to hear from you. Send us a message and we&apos;ll respond soon.
           </Typography>
         </Box>
 

@@ -6,7 +6,7 @@ import DownloadButton from './DownloadButton';
 
 export default function DownloadButtonDemo() {
   // Create sample blob for demo
-  const createSampleFile = (content: string, filename: string) => {
+  const createSampleFile = (content: string) => {
     const blob = new Blob([content], { type: 'text/plain' });
     return window.URL.createObjectURL(blob);
   };
@@ -23,7 +23,7 @@ Features demonstrated:
 
 This file is generated dynamically using Blob API for demo purposes.`;
 
-  const sampleBlobUrl = createSampleFile(sampleTextContent, 'sample.txt');
+  const sampleBlobUrl = createSampleFile(sampleTextContent);
 
   return (
     <Box className="space-y-3! mt-2! bg-none!">
@@ -85,7 +85,7 @@ This file is generated dynamically using Blob API for demo purposes.`;
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-2">
               <DownloadButton
-                url={createSampleFile('File 1 content', 'file1.txt')}
+                url={createSampleFile('File 1 content')}
                 name="file-1.txt"
                 tooltip="Download file 1"
               />
@@ -93,7 +93,7 @@ This file is generated dynamically using Blob API for demo purposes.`;
             </div>
             <div className="flex items-center gap-2">
               <DownloadButton
-                url={createSampleFile('File 2 content', 'file2.txt')}
+                url={createSampleFile('File 2 content')}
                 name="file-2.txt"
                 tooltip="Download file 2"
               />
@@ -101,7 +101,7 @@ This file is generated dynamically using Blob API for demo purposes.`;
             </div>
             <div className="flex items-center gap-2">
               <DownloadButton
-                url={createSampleFile('File 3 content', 'file3.txt')}
+                url={createSampleFile('File 3 content')}
                 name="file-3.txt"
                 tooltip="Download file 3"
               />

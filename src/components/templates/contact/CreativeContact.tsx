@@ -51,7 +51,7 @@ export default function CreativeContact() {
               mb: 2
             }}
           >
-            Let's build something amazing together!
+            Let&apos;s build something amazing together!
           </Typography>
           <Typography 
             variant="h5" 
@@ -61,7 +61,7 @@ export default function CreativeContact() {
               textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
             }}
           >
-            Tell us your idea and we'll make it reality
+            Tell us your idea and we&apos;ll make it reality
           </Typography>
         </Box>
 
@@ -75,7 +75,7 @@ export default function CreativeContact() {
             <Box component="form" onSubmit={handleSubmit(onSubmit)}>
               <Box sx={{ mb: 4 }}>
                 <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: '#374151' }}>
-                  What's your name?
+                  What&apos;s your name?
                 </Typography>
                 <TextField
                   fullWidth
@@ -95,7 +95,7 @@ export default function CreativeContact() {
 
               <Box sx={{ mb: 4 }}>
                 <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: '#374151' }}>
-                  What's your email?
+                  What&apos;s your email?
                 </Typography>
                 <TextField
                   fullWidth

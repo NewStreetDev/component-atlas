@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs/promises';
-import { TemplateManifest, Template, TemplateFile } from '@/shared/types/template';
+import { Template, TemplateFile } from '@/shared/types/template';
 
 const TEMPLATES_BASE_PATH = path.join(process.cwd(), 'src', 'components', 'templates');
 
@@ -67,7 +67,7 @@ export async function getTemplateFiles(relativePath: string, templateId?: string
     
     // If templateId is specified, return only that template file
     if (templateId) {
-      const template = manifest.templates?.find((t: any) => t.id === templateId);
+      const template = manifest.templates?.find((t: { id: string; file: string }) => t.id === templateId);
       if (!template) {
         throw new Error('Template not found');
       }
